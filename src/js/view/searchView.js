@@ -16,7 +16,18 @@ export const clearResults = () => {
     elements.searchResultPages.innerHTML = '';
 };
 
-const limitRecipeTitle = (title, limit = 17) => {
+export const highlightSelected = id => {
+
+    const resultArr = Array.from(document.querySelectorAll('.results__link'));
+    resultArr.forEach(el => {
+        el.classList.remove('results__link--active');
+    });
+
+    document.querySelector(`.results__link[href*="#${id}"]`).classList.add('results__link--active');
+    
+};
+
+export const limitRecipeTitle = (title, limit = 17) => {
     //Craeting a const with for arary such that the array mutation is performed is possible. New are not mutating the underlying variable when we add or remove entries from the array. Same goes for objects.
     const newTitle = [];
     if(title.length > limit){
